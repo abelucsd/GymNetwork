@@ -1,0 +1,11 @@
+
+{% block title %} 
+Register
+{% endblock %}
+
+{% block content %}
+	<form method="POST" >
+		{% csrf_token %}
+		<button type="submit" > Register</button>
+	</form>
+{% endblock %}
