@@ -1,18 +1,38 @@
 {% extends "main/base.html" %}
+{% block title %}
+Login
+{% endblock %}
+
 {% block content %}
 
-<h1>Login</h1>
+<br>
+<h3>Login</h3>
+<br>
 
 <form method="POST">
 	{% csrf_token %}
-	{{ form.username.label_tag }}
-	{{ form.username }} 
-	<br>
+	<div class="input-group mb-3">
+	  <div class="input-group-prepend">
+	    <span class="input-group-text">Username</span>
+	  </div>	  
+	  <input type="text" name="username" id="id_username" class="form-control" placeholder="Username" aria-label="Username" >	  
+		{% for error in form.username.errors %}
+				<p style="color:red">{{error}}</p>
+		{% endfor %}	
+	</div>
+	
+	<div class="input-group mb-3">
+	  <div class="input-group-prepend">
+	    <span class="input-group-text">Password</span>
+	  </div>
+	  <input type="password" name="password" id="id_password" class="form-control" placeholder="" aria-label="Password" >	  
+		{% for error in form.password.errors %}
+				<p style="color:red">{{error}}</p>
+		{% endfor %}	
+	</div>
+	
 
-	{{ form.password.label_tag }}
-	{{ form.password }}
-	{{form.non_field_errors}}
-	<input type="submit">
+	<input type="submit", name="save" class="btn btn-success"></input>
 
 	<p>Don't have an account? Create one <a href="/registration">here</a></p>
 </form>
